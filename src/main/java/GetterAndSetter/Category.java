@@ -2,10 +2,10 @@ package GetterAndSetter;
 
 public class Category {
 
-    private long id;
+    private String id;
     private String categoryName;
 
-    public void setId(long category_id) {
+    public void setId(String category_id) {
         this.id = category_id;
     }
 
@@ -13,11 +13,11 @@ public class Category {
         this.categoryName = category;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public String getCategory() {
+    public String getName() {
         return categoryName;
     }
 }
