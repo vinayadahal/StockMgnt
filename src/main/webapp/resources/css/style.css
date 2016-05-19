@@ -1,6 +1,205 @@
-*{
-    margin:0px;
+* {
+    margin: 0px;
     padding: 0px;
+}
+
+body {
     font-family: sans-serif;
     font-size: 12px;
+}
+
+/*login page*/
+.panel-login-main {
+    width: 400px;
+    height: 300px;
+    /*padding: 10px;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -150px;
+}
+
+/*login page*/
+
+.icon_wrap {
+    display: table;
+    background-color: #ccc;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -85px;
+    padding: 10px;
+}
+
+.icons {
+    text-align: center
+}
+
+.icons a {
+    outline: none;
+    color: #000;
+}
+
+.icons a:hover {
+    color: #333;
+}
+
+.icon_font {
+    font-size: 100px;
+    padding: 10px;
+}
+
+.logoutBtn {
+    border: none;
+    background-color: #fff;
+    width: 100%;
+    text-align: left;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.logoutBtn:hover {
+    background-color: #f7f7f7;
+}
+
+/************Drop Down Custom**************/
+
+.dropdown-icon {
+    color: #000;
+    font-size: 18px;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.dropdown-select {
+    background: transparent;
+    width: 250px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 1;
+    border: 0;
+    border-radius: 3px;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.styled-select {
+    float: left;
+}
+
+.styled-select select {
+    border: 1px solid rgb(204, 204, 204);
+    position: relative;
+}
+
+.inner-addon {
+    position: relative;
+    width: 250px; /*should be equal to .dropdown-select width*/
+}
+
+.inner-addon .fa {
+    position: absolute;
+    top: 0px;
+    padding: 8px;
+    pointer-events: none;
+}
+
+.right-addon .fa {
+    right: 0;
+}
+
+/************Drop Down Custom**************/
+
+.btn-default-custom {
+    float: right;
+    outline: none;
+}
+
+.popup-box {
+    position: fixed;
+    right: 5px;
+    top: 70px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    color: #fff;
+    display: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    z-index: 1;
+}
+
+.popup-bg{
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    z-index: 2;
+}
+
+.index-page-select-form-wrap {
+    display: table;
+    width: 100%;
+
+}
+
+.index-page-title {
+    font-size: 22px;
+    float: left;
+}
+
+#table_form input[type="submit"] {
+    border: none;
+    background-color: transparent;
+    color: rgb(51, 122, 183);
+}
+
+#table_form input[type="submit"]:hover {
+    text-decoration: underline;
+}
+
+.container label {
+    font-weight: normal;
+}
+
+.panel-override {
+    width: 300px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -100px;
+    display: none;
+    z-index: 3;
+}
+
+#confirm-box a{
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-wrap {
+    padding: 15px 0px;
+    height: 40px;
+    z-index: 1;
+}
+
+.footer {
+    text-align: center;
+    padding: 0px 20px;
 }
