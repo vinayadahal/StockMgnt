@@ -7,17 +7,25 @@
     <h:head>
         <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
         <title>DashBoard - Stock Manager</title>
-        <h:outputStylesheet library="css" name="bootstrap.min.css"  />
-        <h:outputStylesheet library="css" name="font-awesome.min.css"  />
+        <h:outputStylesheet library="webjars" name="bootstrap/3.3.6/css/bootstrap.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/4.6.2/css/font-awesome.min-jsf.css" />
         <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputScript library="webjars" name="bootstrap/3.3.6/js/dropdown.js"/>
     </h:head>
     <h:body>
         <ui:insert name="menu">
             <ui:include src="menuBar.xhtml" />
         </ui:insert>
-        <ui:insert name="content">
+        <div class="panel panel-default" style="width: 20%;float: left;padding: 5px;">
+            <ui:insert name="sidebar">
+                <ui:include src="sidebar.xhtml" />
+            </ui:insert>
+        </div>
+        <div class="panel panel-default" style="width: 79%;float: right;padding: 10px;">
+            <ui:insert name="content">
 
-        </ui:insert>
+            </ui:insert>
+        </div>
         <ui:insert name="footer">
             <ui:include src="footer.xhtml" />
         </ui:insert>

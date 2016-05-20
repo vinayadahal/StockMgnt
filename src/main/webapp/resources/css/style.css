@@ -8,6 +8,12 @@ body {
     font-size: 12px;
 }
 
+.navbar-override{
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+}
+
 /*login page*/
 .panel-login-main {
     width: 400px;
@@ -34,7 +40,11 @@ body {
 }
 
 .icons {
-    text-align: center
+    width: 140px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    text-align: center;
 }
 
 .icons a {
