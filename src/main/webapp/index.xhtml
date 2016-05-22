@@ -8,32 +8,30 @@
     <h:body>
         <ui:composition template="template/layout.xhtml">
             <ui:define name="content">
-                <!--<div class="panel panel-default">-->
-                    <div class="panel panel-default icons">
-                        <a href="/expired-password">
-                            <i class="fa fa-cube icon_font"></i>
-                            <br/>Category
-                        </a>
-                    </div>
-                    <div class="panel panel-default icons">
-                        <a href="/expired-password">
-                            <i class="fa fa-clone icon_font"></i>
-                            <br/>Products
-                        </a>
-                    </div>
-                    <div class="panel panel-default icons">
-                        <a href="/expired-password">
-                            <i class="fa fa-user-secret icon_font"></i>
-                            <br/>Clients
-                        </a>
-                    </div>
-                    <div class="panel panel-default icons">
-                        <a href="/expired-password">
-                            <i class="fa fa-users icon_font"></i>
-                            <br/>Users
-                        </a>
-                    </div>
-                <!--</div>-->
+                <div class="panel panel-default icons">
+                    <h:link outcome="category/index.xhtml">
+                        <i class="fa fa-cube icon_font"></i>
+                        <br/>Category
+                    </h:link>
+                </div>
+                <div class="panel panel-default icons">
+                    <a href="/expired-password">
+                        <i class="fa fa-clone icon_font"></i>
+                        <br/>Products
+                    </a>
+                </div>
+                <div class="panel panel-default icons">
+                    <a href="/expired-password">
+                        <i class="fa fa-user-secret icon_font"></i>
+                        <br/>Clients
+                    </a>
+                </div>
+                <div class="panel panel-default icons">
+                    <a href="/expired-password">
+                        <i class="fa fa-users icon_font"></i>
+                        <br/>Users
+                    </a>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

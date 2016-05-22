@@ -9,29 +9,15 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <p:accordionPanel>
-                <p:tab title="Godfather Part I">
-                    <h:panelGrid columns="2" cellpadding="10">
-                        <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-                        <h:outputText
-                            value="The story begins as Don Vito Corleone..." />
-                    </h:panelGrid>
-                </p:tab>
-                <p:tab title="Godfather Part II">
-                    <h:panelGrid columns="2" cellpadding="10">
-                        <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                        <h:outputText value="Francis Ford Coppola's legendary..." />
-                    </h:panelGrid>
-                </p:tab>
-                <p:tab title="Godfather Part III">
-                    <h:panelGrid columns="2" cellpadding="10">
-                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                        <h:outputText value="After a break of more than 15 years..." />
-                    </h:panelGrid>
-                </p:tab>
-            </p:accordionPanel>
+            <p:menu style="width:169px">
+                <p:submenu label="Locations" style="width:158px">
+                    <p:menuitem value="Category" url="#{request.scheme}://#{request.serverName}:#{request.serverPort}#{request.contextPath}/category/index.xhtml" />
+                    <p:menuitem value="Products" url="#" />
+                    <p:menuitem value="Clients" url="#" />
+                    <p:menuitem value="Users" url="#" />
+                </p:submenu>
+            </p:menu>
         </ui:composition>
-
     </h:body>
 </html>
 
