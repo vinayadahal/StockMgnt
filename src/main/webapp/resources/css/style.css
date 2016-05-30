@@ -45,6 +45,14 @@ body {
     padding: 10px;
 }
 
+.pageHeader{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px; 
+}
+
+.pageHeader h3{
+    margin-top: 0px;
+}
 
 
 

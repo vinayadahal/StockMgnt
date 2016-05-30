@@ -9,11 +9,11 @@
     <h:body>
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
-                <p:dataTable var="category" value="#{mbCategory.getCategoryBean()}" rows="1"
+                <div class="pageHeader"><h3>Category</h3></div>
+                <p:dataTable var="category" value="#{mbCategory.getCategoryBean()}" rows="10"
                              paginator="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15"
-                             >
+                             rowsPerPageTemplate="5,10,15">
                     <p:column headerText="S.No.">
                         <h:outputText value="#{category.getId()}" />
                     </p:column>

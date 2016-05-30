@@ -11,7 +11,7 @@
         <ui:composition>
             <p:menu style="width:169px">
                 <p:submenu label="Locations" style="width:158px">
-                    <p:menuitem value="Category" url="#{request.scheme}://#{request.serverName}:#{request.serverPort}#{request.contextPath}/category/index.xhtml" />
+                    <p:menuitem value="Category" url="${pageContext.request.contextPath}/category/index.xhtml" />
                     <p:menuitem value="Products" url="#" />
                     <p:menuitem value="Clients" url="#" />
                     <p:menuitem value="Users" url="#" />

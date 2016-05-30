@@ -18,9 +18,9 @@ public class Datasource {
 
     public Datasource() {
         try {
-            String connectionURL = "jdbc:mysql://localhost/inventory";
+            String connectionURL = "jdbc:mysql://localhost/stockmgnt";
             loadDriverClass();
-            dbConnection = DriverManager.getConnection(connectionURL, "root", "");
+            dbConnection = DriverManager.getConnection(connectionURL, "root", "root");
         } catch (SQLException ex) {
             System.out.println("SQL Exception Caught:- " + ex);
         }
