@@ -22,10 +22,10 @@ public class CategoryBean {
 
     Datasource objDatasource = new Datasource();
     SelectModel objSelect = new SelectModel();
+    List<Category> list = new ArrayList();
 
-    public List<Category> getCategoryBean() {
+    public List<Category> getAllCategoryBean() {
         System.out.println("Bean Called");
-        List<Category> list = new ArrayList();
         objSelect.select("*");
         objSelect.from("category");
         List<Map> result = objSelect.runQuery();
@@ -36,5 +36,29 @@ public class CategoryBean {
             list.add(objCategory);
         }
         return list;
+    }
+
+    public Category getSingleCategoryBean(String id) {
+        Category objCategory = new Category();
+        objSelect.select("*");
+        objSelect.from("category");
+        String[] cols = {"id"};
+        String[] vals = {id};
+        objSelect.where(cols, vals);
+        List<Map> result = objSelect.runQuery();
+        for (Map category : result) {
+            objCategory.setId(category.get("id").toString());
+            objCategory.setName(category.get("name").toString());
+        }
+        return objCategory;
+    }
+
+    public void updateCategory(Object category) {
+        System.out.println("called...but no idea about the object :(");
+        System.out.println(category);
+    }
+
+    public void setCategory() {
+
     }
 }
