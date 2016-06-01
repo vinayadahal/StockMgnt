@@ -11,18 +11,28 @@
     <h:body>
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("#cmdBtn").click(){
+                            alert("ok");
+                            return false;
+                        }
+                    });
+                </script>
                 <div class="pageHeader"><h3>Edit Category</h3></div>
-                <c:set var="category" value="#{mbCategory.getSingleCategoryBean(param['categoryId'])}" scope="request" />
                 <h:form id="categoryForm">
                     <p:panel id="panel">
                         <h:panelGrid columns="3" cellpadding="5">
                             <p:outputLabel for="category" value="Category:" />
-                            <p:inputText id="category" value="#{category.name}" required="true" label="Category">
+                            <p:inputText id="category" value="#{mbCategory.singleRecord}" required="true" label="Category">
                                 <f:validateLength minimum="2" />
                             </p:inputText>
                             <p:message for="category" display="icon" />
                         </h:panelGrid>
-                        <p:commandButton value="Save" update="panel" actionListener="#{category.updateCategory}" icon="ui-icon-check" />
+                        <p:commandButton value="Save" update="panel" actionListener="#{mbCategory.update}" icon="ui-icon-check" id="cmdBtn">
+                            <f:param name="categoryName" value="#{mbCategory.singleRecord}" id="categoryName"/>
+                            <f:param name="categoryId" value="#{param['categoryId']}" />
+                        </p:commandButton>
                     </p:panel>
                 </h:form>
             </ui:define>

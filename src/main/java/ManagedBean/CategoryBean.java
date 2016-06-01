@@ -1,27 +1,22 @@
 package ManagedBean;
 
 import DataSource.Datasource;
-import javax.faces.bean.ManagedBean;
-import javax.inject.Named;
 import GetterAndSetter.Category;
 import SystemModels.SelectModel;
+import SystemModels.UpdateModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.faces.bean.RequestScoped;
 
-/**
- *
- * @author bidahal
- */
-@ManagedBean(name = "mbCategory")
-@Named(value = "categoryBean")
-@RequestScoped
+//@ManagedBean(name = "mbCategory")
+//@Named(value = "categoryBean")
+//@RequestScoped
 //@Dependent
 public class CategoryBean {
 
     Datasource objDatasource = new Datasource();
     SelectModel objSelect = new SelectModel();
+    UpdateModel objUpdate = new UpdateModel();
     List<Category> list = new ArrayList();
 
     public List<Category> getAllCategoryBean() {
@@ -53,9 +48,19 @@ public class CategoryBean {
         return objCategory;
     }
 
-    public void updateCategory(Object category) {
-        System.out.println("called...but no idea about the object :(");
-        System.out.println(category);
+    public void updateCategory(String id, String value) {
+        System.out.println("should be updated");
+        objUpdate.update("category");
+        String[] col = {"name"};
+        String[] val = {value};
+        System.out.println(value);
+        System.out.println(id);
+        objUpdate.set(col, val);
+        String[] whereCol = {"id"};
+        String[] whereVal = {id};
+        objUpdate.where(whereCol, whereVal);
+        int status = objUpdate.runQuery();
+        System.out.println(status);
     }
 
     public void setCategory() {
