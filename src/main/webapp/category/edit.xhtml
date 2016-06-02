@@ -11,28 +11,18 @@
     <h:body>
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $("#cmdBtn").click(){
-                            alert("ok");
-                            return false;
-                        }
-                    });
-                </script>
                 <div class="pageHeader"><h3>Edit Category</h3></div>
-                <h:form id="categoryForm">
+                <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
                     <p:panel id="panel">
                         <h:panelGrid columns="3" cellpadding="5">
                             <p:outputLabel for="category" value="Category:" />
+                            <p:inputText type="hidden" id="categoryId" value="#{param['categoryId']}"  />
                             <p:inputText id="category" value="#{mbCategory.singleRecord}" required="true" label="Category">
                                 <f:validateLength minimum="2" />
                             </p:inputText>
                             <p:message for="category" display="icon" />
                         </h:panelGrid>
-                        <p:commandButton value="Save" update="panel" actionListener="#{mbCategory.update}" icon="ui-icon-check" id="cmdBtn">
-                            <f:param name="categoryName" value="#{mbCategory.singleRecord}" id="categoryName"/>
-                            <f:param name="categoryId" value="#{param['categoryId']}" />
-                        </p:commandButton>
+                        <p:commandButton value="Save" update="panel" action="#{mbCategory.update}" icon="ui-icon-check" id="cmdBtn" />
                     </p:panel>
                 </h:form>
             </ui:define>

@@ -48,7 +48,7 @@ public class CategoryBean {
         return objCategory;
     }
 
-    public void updateCategory(String id, String value) {
+    public int updateCategory(String id, String value) {
         System.out.println("should be updated");
         objUpdate.update("category");
         String[] col = {"name"};
@@ -60,7 +60,7 @@ public class CategoryBean {
         String[] whereVal = {id};
         objUpdate.where(whereCol, whereVal);
         int status = objUpdate.runQuery();
-        System.out.println(status);
+        return status;
     }
 
     public void setCategory() {

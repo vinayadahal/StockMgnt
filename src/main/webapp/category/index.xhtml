@@ -11,6 +11,8 @@
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
                 <div class="pageHeader"><h3>Category</h3></div>
+                <f:event type="preRenderView" listener="#{mbCategory.showGrowl}" /> <!--Needed for showing growl in another page-->
+                <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
                 <p:dataTable var="category" value="#{mbCategory.all}" 
                              rows="10"
                              paginator="true"

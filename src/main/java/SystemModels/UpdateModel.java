@@ -51,7 +51,6 @@ public class UpdateModel {
     }
 
     public int runQuery() {
-        System.out.println(query);
         Datasource objConnect = new Datasource();
         try {
             PreparedStatement prepStmt = objConnect.dbConnection.prepareStatement(query);
