@@ -1,10 +1,9 @@
-package GetterAndSetter;
+package ManagedBean;
 
-import ManagedBean.CategoryBean;
+import JavaClasses.CategoryClass;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -17,6 +16,7 @@ import javax.inject.Named;
 @RequestScoped
 public class Category {
 
+    private int recordCount;
     private String id;
     private String categoryName;
 
@@ -37,40 +37,47 @@ public class Category {
     }
 
     public List<Category> getAll() {
-        CategoryBean objCategoryBean = new CategoryBean();
+        CategoryClass objCategoryBean = new CategoryClass();
         return objCategoryBean.getAllCategoryBean();
     }
 
-    public String getSingleRecord() {
-        CategoryBean objCategoryBean = new CategoryBean();
+    public void singleRecord() {
+        CategoryClass objCategoryBean = new CategoryClass();
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
         String categoryId = params.get("categoryId");
-        return objCategoryBean.getSingleCategoryBean(categoryId).getName();
+        this.id = objCategoryBean.getSingleCategoryBean(categoryId).getId();
+        this.categoryName = objCategoryBean.getSingleCategoryBean(categoryId).getName();
     }
 
-    @PostConstruct
-    public void update() { // this is action listener so no need to add get/set
-        System.out.println("SetUpdate");
-        CategoryBean objCategoryBean = new CategoryBean();
-        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        if (requestParams.get("categoryId") == null || requestParams.get("category") == null) { // update record if both values are true
+    public void add() {
+        CategoryClass objCategoryBean = new CategoryClass();
+        if (objCategoryBean.addCategory(this.categoryName) == 0) {
+            System.out.println("Could not insert category for some reason....show error page!!!");
             return;
         }
-        if (objCategoryBean.updateCategory(requestParams.get("categoryId"), requestParams.get("category")) != 1) {
+        String successMsg = "Category Added: " + this.categoryName;
+        redirectPage("index", successMsg);
+    }
+
+    public void update() {
+        CategoryClass objCategoryBean = new CategoryClass();
+        if (this.categoryName == null || this.id == null) { // update record if both values are true
+            System.out.println("Data are null....fatal error from category bean");
+            return;
+        }
+        if (objCategoryBean.updateCategory(this.id, this.categoryName) != 1) {
             System.out.println("could not update the record.....Show Error page!!!");
             return;
         }
-        String successMsg = "Category updated: " + requestParams.get("category");
+        String successMsg = "Category Updated: " + this.categoryName;
         redirectPage("index", successMsg);
-
     }
 
     public void redirectPage(String pageName, String successMsg) {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-
         try {
-            ec.getFlash().put("param1", successMsg); //setting flash message
+            ec.getFlash().put("successMsg", successMsg); //setting flash message
             ec.redirect(ec.getRequestContextPath() + "/category/" + pageName + ".xhtml");
         } catch (IOException ex) {
             System.out.println("Caught IO Exception >>> " + ex);
@@ -81,8 +88,8 @@ public class Category {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
         String message = null;
-        if (ec.getFlash().containsKey("param1")) {
-            message = ec.getFlash().get("param1").toString();//getting flash message
+        if (ec.getFlash().containsKey("successMsg")) {
+            message = ec.getFlash().get("successMsg").toString();//getting flash message
         }
         FacesContext context = FacesContext.getCurrentInstance();
         if (message != null) {

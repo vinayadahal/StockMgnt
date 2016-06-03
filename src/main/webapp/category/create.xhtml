@@ -1,29 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
     </h:head>
     <h:body>
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
-                <div class="pageHeader"><h3>Edit Category</h3></div>
+                <div class="pageHeader"><h3>Create Category</h3></div>
                 <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
                     <p:panel id="panel">
-                        <f:metadata><f:viewAction action="#{mbCategory.singleRecord()}" /></f:metadata>
                         <h:panelGrid columns="3" cellpadding="5">
                             <p:outputLabel for="category" value="Category:" />
-                            <p:inputText type="hidden" id="categoryId" value="#{mbCategory.id}"  />
                             <p:inputText id="category" value="#{mbCategory.name}" required="true" label="Category">
                                 <f:validateLength minimum="2" />
                             </p:inputText>
                             <p:message for="category" display="icon" />
                         </h:panelGrid>
-                        <p:commandButton value="Save" update="panel" action="#{mbCategory.update}" icon="ui-icon-check" id="cmdBtn" />
+                        <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="ui-icon-check" />
                     </p:panel>
                 </h:form>
             </ui:define>

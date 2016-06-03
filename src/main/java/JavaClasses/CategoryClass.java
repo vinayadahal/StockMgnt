@@ -1,21 +1,19 @@
-package ManagedBean;
+package JavaClasses;
 
 import DataSource.Datasource;
-import GetterAndSetter.Category;
+import ManagedBean.Category;
+import SystemModels.InsertModel;
 import SystemModels.SelectModel;
 import SystemModels.UpdateModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-//@ManagedBean(name = "mbCategory")
-//@Named(value = "categoryBean")
-//@RequestScoped
-//@Dependent
-public class CategoryBean {
+public class CategoryClass {
 
     Datasource objDatasource = new Datasource();
     SelectModel objSelect = new SelectModel();
+    InsertModel objInsert = new InsertModel();
     UpdateModel objUpdate = new UpdateModel();
     List<Category> list = new ArrayList();
 
@@ -48,8 +46,15 @@ public class CategoryBean {
         return objCategory;
     }
 
+    public int addCategory(String value) {
+        objInsert.insert("category");
+        String[] cols = {"name"};
+        String[] vals = {value};
+        objInsert.values(cols, vals);
+        return objInsert.runUpdate();
+    }
+
     public int updateCategory(String id, String value) {
-        System.out.println("should be updated");
         objUpdate.update("category");
         String[] col = {"name"};
         String[] val = {value};
@@ -59,11 +64,7 @@ public class CategoryBean {
         String[] whereCol = {"id"};
         String[] whereVal = {id};
         objUpdate.where(whereCol, whereVal);
-        int status = objUpdate.runQuery();
-        return status;
+        return objUpdate.runQuery();
     }
 
-    public void setCategory() {
-
-    }
 }

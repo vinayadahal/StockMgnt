@@ -15,7 +15,6 @@ public class SelectModel {
 
     public String query;
     public List<String> value = new ArrayList<>();
-    Datasource objConnect = new Datasource();
 
     public void select(String col) {
         query = "SELECT " + col;
@@ -58,6 +57,7 @@ public class SelectModel {
 
     public List<Map> runQuery() {
         Helper objHelper = new Helper();
+        Datasource objConnect = new Datasource();
         try {
             PreparedStatement prepStmt = objConnect.dbConnection.prepareStatement(query);
             for (int i = 0; i < value.size(); i++) {
@@ -67,14 +67,18 @@ public class SelectModel {
             ResultSet rs = prepStmt.executeQuery(); // executes query
             ResultSetMetaData rsMeta = prepStmt.getMetaData(); // gets Metadata
             List<Map> Rows = objHelper.getMetaInfo(rsMeta, rs);
+            prepStmt.close();
+            objConnect.closeConnection();
             return Rows;
         } catch (SQLException ex) {
             System.out.println("Exception caught on SelectModel runQuery >>> " + ex);
         }
+        objConnect.closeConnection();
         return null;
     }
 
     public int countRows(String tableName) {
+        Datasource objConnect = new Datasource();
         select("COUNT(*) AS total");
         from(tableName);
         try {
@@ -83,9 +87,13 @@ public class SelectModel {
             while (rs.next()) {
                 return (rs.getInt("total"));
             }
+            stmt.close();
+            objConnect.closeConnection();
         } catch (SQLException ex) {
             System.out.println("SQL exception from SelectModel" + ex);
         }
+        
+        objConnect.closeConnection();
         return 0;
     }
 

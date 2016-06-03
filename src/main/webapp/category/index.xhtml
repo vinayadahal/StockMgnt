@@ -10,15 +10,21 @@
     <h:body>
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
-                <div class="pageHeader"><h3>Category</h3></div>
+                <div class="pageHeader">
+                    <h3>Category</h3>
+                    <span class="ui-widget ui-widget-header createIcon" style="font-size: 20px;">
+                        <h:link outcome="create.xhtml">
+                            <i class="fa fa-cart-plus"></i>
+                        </h:link>
+                    </span>
+                </div>
                 <f:event type="preRenderView" listener="#{mbCategory.showGrowl}" /> <!--Needed for showing growl in another page-->
                 <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
-                <p:dataTable var="category" value="#{mbCategory.all}" 
+                <!--#{mbCategory.all.size()}-->
+                <p:dataTable var="category" value="#{mbCategory.all}"
                              rows="10"
                              paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             >
-
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                     <p:column headerText="S.No.">
                         <h:outputText value="#{category.id}" />
                     </p:column>

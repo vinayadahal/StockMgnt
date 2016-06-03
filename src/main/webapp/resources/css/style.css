@@ -48,13 +48,23 @@ body {
 .pageHeader{
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px; 
+    display: table;
+    width: 100%;
 }
 
 .pageHeader h3{
     margin-top: 0px;
+    display: table-cell;
+    padding-bottom: 10px;
 }
 
-
+.createIcon{
+    float:right;
+    display: table-cell;
+    border-radius: 3px;
+    padding: 0px 10px;
+    margin-right: 15px;
+}
 
 
 

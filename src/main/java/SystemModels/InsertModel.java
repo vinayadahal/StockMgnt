@@ -13,7 +13,6 @@ public class InsertModel {
     public String queryInsert;
     public List<String> columns = new ArrayList<>();
     public List<String> values = new ArrayList<>();
-    Datasource objConnect = new Datasource();
 
     public void insert(String table) {
         queryInsert = "INSERT INTO " + table;
@@ -48,18 +47,27 @@ public class InsertModel {
         }
     }
 
-    public int runUpdate() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        PreparedStatement prepStmt = objConnect.dbConnection.prepareStatement(queryInsert, Statement.RETURN_GENERATED_KEYS);
-        for (int i = 0; i < values.size(); i++) {
-            prepStmt.setString(i + 1, values.get(i));
-        }
-        prepStmt.executeUpdate(); // executes query
-        int last_inserted_id = 0;
+    public int runUpdate() {
+        Datasource objConnect = new Datasource();
+        try {
+            PreparedStatement prepStmt = objConnect.dbConnection.prepareStatement(queryInsert, Statement.RETURN_GENERATED_KEYS);
+            for (int i = 0; i < values.size(); i++) {
+                prepStmt.setString(i + 1, values.get(i));
+            }
+            prepStmt.executeUpdate(); // executes query
+            int last_inserted_id = 0;
 
-        ResultSet rs = prepStmt.getGeneratedKeys();
-        if (rs.next()) {
-            last_inserted_id = rs.getInt(1);
+            ResultSet rs = prepStmt.getGeneratedKeys();
+            if (rs.next()) {
+                last_inserted_id = rs.getInt(1);
+            }
+            prepStmt.close();
+            objConnect.closeConnection();
+            return last_inserted_id;
+        } catch (SQLException ex) {
+            System.out.println("Caught Exception:- " + ex);
         }
-        return last_inserted_id;
+        objConnect.closeConnection();
+        return 0;
     }
 }

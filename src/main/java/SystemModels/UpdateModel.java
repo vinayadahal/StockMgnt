@@ -59,10 +59,13 @@ public class UpdateModel {
             }
             value.clear();
             int status = prepStmt.executeUpdate();
+            prepStmt.close();
+            objConnect.closeConnection();
             return status;
         } catch (SQLException ex) {
             System.out.println("Exception caught on UpdateModel runQuery >>> " + ex);
         }
+        objConnect.closeConnection();
         return 0;
     }
 }
