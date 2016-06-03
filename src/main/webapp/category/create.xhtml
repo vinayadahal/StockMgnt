@@ -11,6 +11,14 @@
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
                 <div class="pageHeader"><h3>Create Category</h3></div>
+                <p:toolbar id="tb" style="margin-bottom: 10px;">
+                    <f:facet name="left">
+                        <h:link outcome="index.xhtml">
+                            <p:commandButton value="Back" type="button" icon="ui-icon-arrowthick-1-w"/>
+                        </h:link>
+                    </f:facet>
+                </p:toolbar>
+
                 <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
                     <p:panel id="panel">
                         <h:panelGrid columns="3" cellpadding="5">

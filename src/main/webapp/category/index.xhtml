@@ -10,14 +10,19 @@
     <h:body>
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
-                <div class="pageHeader">
-                    <h3>Category</h3>
-                    <span class="ui-widget ui-widget-header createIcon" style="font-size: 20px;">
+                <div class="pageHeader"><h3>Category</h3></div>
+
+                <p:toolbar id="tb" style="margin-bottom: 10px;">
+                    <f:facet name="left">
                         <h:link outcome="create.xhtml">
-                            <i class="fa fa-cart-plus"></i>
+                            <p:commandButton value="Add New" type="button" icon="ui-icon-plus"/>
                         </h:link>
-                    </span>
-                </div>
+                    </f:facet>
+                    <f:facet name="right">
+                        <p:commandButton title="Generate Report" type="button" icon="ui-icon-disk"/>
+                    </f:facet>
+                </p:toolbar>
+
                 <f:event type="preRenderView" listener="#{mbCategory.showGrowl}" /> <!--Needed for showing growl in another page-->
                 <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
                 <!--#{mbCategory.all.size()}-->
