@@ -9,14 +9,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 @ManagedBean(name = "mbCategory")
-@Named(value = "Category")
 @RequestScoped
 public class Category {
 
-    private int recordCount;
     private String id;
     private String categoryName;
 
