@@ -10,42 +10,47 @@
     <h:body>
         <ui:composition template="../template/layout.xhtml">
             <ui:define name="content">
-                <div class="pageHeader"><h3>Category</h3></div>
-
-                <p:toolbar id="tb" style="margin-bottom: 10px;">
-                    <f:facet name="left">
-                        <h:link outcome="create.xhtml">
-                            <p:commandButton value="Add New" type="button" icon="ui-icon-plus"/>
-                        </h:link>
-                    </f:facet>
-                    <f:facet name="right">
-                        <p:commandButton title="Generate Report" type="button" icon="ui-icon-disk"/>
-                    </f:facet>
-                </p:toolbar>
-
-                <f:event type="preRenderView" listener="#{mbCategory.showGrowl}" /> <!--Needed for showing growl in another page-->
-                <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
-                <!--#{mbCategory.all.size()}-->
-                <p:dataTable var="category" value="#{mbCategory.all}"
-                             rows="10"
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                    <p:column headerText="S.No.">
-                        <h:outputText value="#{category.id}" />
-                    </p:column>
-
-                    <p:column headerText="Category Name">
-                        <h:outputText value="#{category.name}" />
-                    </p:column>
-                    <p:column headerText="Edit Record" style="width: 100px;" colspan="2">
-                        <h:link outcome="edit.xhtml">
-                            <p:rowEditor />
-                            <f:param name="categoryId" value="#{category.id}" />
-                        </h:link>
-                    </p:column>
-                </p:dataTable>
+                <h:form>
+                    <div class="pageHeader"><h3>Category</h3></div>
+                    <p:toolbar id="tb" style="margin-bottom: 10px;">
+                        <f:facet name="left">
+                            <h:link outcome="create.xhtml">
+                                <p:commandButton value="Add New" type="button" icon="fa fa-plus-circle"/>
+                            </h:link>
+                        </f:facet>
+                        <f:facet name="right">
+                            <p:commandButton title="Generate Report" type="button" icon="fa fa-download"/>
+                        </f:facet>
+                    </p:toolbar>
+                    <f:event type="preRenderView" listener="#{mbCategory.showGrowl}" /> <!--Needed for showing growl in another page-->
+                    <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
+                    <!--#{mbCategory.all.size()}-->
+                    <p:dataTable var="category" value="#{mbCategory.all}"
+                                 rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                        <p:column headerText="S.No.">
+                            <h:outputText value="#{category.id}" />
+                        </p:column>
+                        <p:column headerText="Category Name">
+                            <h:outputText value="#{category.name}" />
+                        </p:column>
+                        <p:column headerText="Edit Record" style="width: 100px;" colspan="2">
+                            <h:link outcome="edit.xhtml" style="text-decoration: none;">
+                                <p:commandButton icon="fa fa-edit" type="button"/>
+                                <f:param name="categoryId" value="#{category.id}" />
+                            </h:link>
+                            <p:commandButton icon="fa fa-close" actionListener="#{mbCategory.delete(category.id)}">
+                                <p:confirm header="Warning: Confirm Delete Action" message="You are about to delete a record. Are you sure?" icon="fa fa-2x fa-fw fa-exclamation-circle" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-close" />
+                            </p:confirmDialog>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
 </html>
-

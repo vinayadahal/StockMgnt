@@ -14,7 +14,7 @@
                 <p:toolbar id="tb" style="margin-bottom: 10px;">
                     <f:facet name="left">
                         <h:link outcome="index.xhtml">
-                            <p:commandButton value="Back" type="button" icon="ui-icon-arrowthick-1-w"/>
+                            <p:commandButton value="Back" type="button" icon="fa fa-arrow-circle-left"/>
                         </h:link>
                     </f:facet>
                 </p:toolbar>
@@ -28,7 +28,7 @@
                             </p:inputText>
                             <p:message for="category" display="icon" />
                         </h:panelGrid>
-                        <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="ui-icon-check" />
+                        <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="fa fa-save" />
                     </p:panel>
                 </h:form>
             </ui:define>

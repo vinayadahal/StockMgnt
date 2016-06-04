@@ -1,6 +1,6 @@
 package ManagedBean;
 
-import JavaClasses.CategoryClass;
+import ApplicationModels.CategoryModel;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -37,12 +37,12 @@ public class Category {
     }
 
     public List<Category> getAll() {
-        CategoryClass objCategoryBean = new CategoryClass();
+        CategoryModel objCategoryBean = new CategoryModel();
         return objCategoryBean.getAllCategoryBean();
     }
 
     public void singleRecord() {
-        CategoryClass objCategoryBean = new CategoryClass();
+        CategoryModel objCategoryBean = new CategoryModel();
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
         String categoryId = params.get("categoryId");
@@ -51,7 +51,7 @@ public class Category {
     }
 
     public void add() {
-        CategoryClass objCategoryBean = new CategoryClass();
+        CategoryModel objCategoryBean = new CategoryModel();
         if (objCategoryBean.addCategory(this.categoryName) == 0) {
             System.out.println("Could not insert category for some reason....show error page!!!");
             return;
@@ -61,7 +61,7 @@ public class Category {
     }
 
     public void update() {
-        CategoryClass objCategoryBean = new CategoryClass();
+        CategoryModel objCategoryBean = new CategoryModel();
         if (this.categoryName == null || this.id == null) { // update record if both values are true
             System.out.println("Data are null....fatal error from category bean");
             return;
@@ -71,6 +71,13 @@ public class Category {
             return;
         }
         String successMsg = "Category Updated: " + this.categoryName;
+        redirectPage("index", successMsg);
+    }
+
+    public void delete(String id) {
+        CategoryModel objCategoryBean = new CategoryModel();
+        objCategoryBean.delete(id);
+        String successMsg = "Category ID: " + id + " deleted";
         redirectPage("index", successMsg);
     }
 

@@ -1,7 +1,8 @@
-package JavaClasses;
+package ApplicationModels;
 
 import DataSource.Datasource;
 import ManagedBean.Category;
+import SystemModels.DeleteModel;
 import SystemModels.InsertModel;
 import SystemModels.SelectModel;
 import SystemModels.UpdateModel;
@@ -9,12 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CategoryClass {
+public class CategoryModel {
 
     Datasource objDatasource = new Datasource();
     SelectModel objSelect = new SelectModel();
     InsertModel objInsert = new InsertModel();
     UpdateModel objUpdate = new UpdateModel();
+    DeleteModel objDelete = new DeleteModel();
     List<Category> list = new ArrayList();
 
     public List<Category> getAllCategoryBean() {
@@ -65,6 +67,14 @@ public class CategoryClass {
         String[] whereVal = {id};
         objUpdate.where(whereCol, whereVal);
         return objUpdate.runQuery();
+    }
+
+    public void delete(String id) {
+        objDelete.delete("category");
+        String[] cols = {"id"};
+        String[] vals = {id};
+        objDelete.where(cols, vals);
+        objDelete.runQuery();
     }
 
 }
