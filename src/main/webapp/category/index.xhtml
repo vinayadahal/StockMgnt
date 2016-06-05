@@ -21,10 +21,11 @@
             <!--#{mbCategory.all.size()}-->
             <p:dataTable var="category" value="#{mbCategory.all}"
                          rows="10"
+                         rowIndexVar="rowIndex"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                 <p:column headerText="S.No.">
-                    <h:outputText value="#{category.id}" />
+                    <h:outputText value="#{rowIndex+1}" />
                 </p:column>
                 <p:column headerText="Category Name">
                     <h:outputText value="#{category.name}" />

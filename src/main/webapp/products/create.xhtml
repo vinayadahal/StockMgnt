@@ -1,0 +1,38 @@
+<ui:composition template="../template/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pm="http://primefaces.org/mobile">
+    <ui:define name="title">Add Product</ui:define>
+    <ui:define name="content">
+        <div class="pageHeader"><h3>Add Product</h3></div>
+        <p:toolbar id="tb" style="margin-bottom: 10px;">
+            <f:facet name="left">
+                <p:commandButton value="Back" type="button" icon="fa fa-arrow-circle-left" onclick="javascript:location.href = 'index.xhtml'"/>
+            </f:facet>
+        </p:toolbar>
+        <p:panel id="panel">
+            <h:form>
+                <pm:field>
+                    <p:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{mbCategory.name}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                    <p:message for="name" display="icon" />
+                </pm:field>
+
+                <pm:field>
+                    <p:outputLabel for="desc" value="Description:" />
+                    <p:inputTextarea id="desc" value="#{mbCategory.name}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputTextarea>
+                </pm:field>
+                <pm:field>
+                    <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="fa fa-save" />
+                </pm:field>
+            </h:form>
+        </p:panel>
+    </ui:define>
+</ui:composition>

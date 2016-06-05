@@ -62,7 +62,9 @@ body {
     margin-right: 15px;
 }
 
-
+.form-control-override{
+    box-shadow: none;
+}
 
 
 /*login page*/
