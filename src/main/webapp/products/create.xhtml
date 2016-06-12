@@ -15,23 +15,40 @@
         </p:toolbar>
         <p:panel id="panel">
             <h:form>
-                <pm:field>
+
+                <fieldset class="form-group">
                     <p:outputLabel for="name" value="Name:" />
                     <p:inputText id="name" value="#{mbCategory.name}" required="true" styleClass="form form-control">
                         <f:validateLength minimum="2" />
                     </p:inputText>
                     <p:message for="name" display="icon" />
-                </pm:field>
+                </fieldset>
 
-                <pm:field>
+
+                <fieldset class="form-group">
                     <p:outputLabel for="desc" value="Description:" />
                     <p:inputTextarea id="desc" value="#{mbCategory.name}" required="true" styleClass="form form-control">
                         <f:validateLength minimum="2" />
                     </p:inputTextarea>
-                </pm:field>
-                <pm:field>
-                    <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="fa fa-save" />
-                </pm:field>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <p:outputLabel for="categories" value="Categories:" />
+                    <p:selectOneMenu id="categories" style="width: 100%;border-radius: 0px;">
+                        <!--<p:ajax listener="#{dropdownView.onCountryChange}" update="city" />-->
+                        <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true"  class="test"/>
+                        <f:selectItems value="1" />
+                    </p:selectOneMenu>
+                    <!--                    <select class="form-control" id="categories">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>-->
+                </fieldset>
+
+                <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="fa fa-save" />
             </h:form>
         </p:panel>
     </ui:define>

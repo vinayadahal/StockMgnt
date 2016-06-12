@@ -12,16 +12,15 @@
                 <p:commandButton value="Back" type="button" icon="fa fa-arrow-circle-left" onclick="javascript:location.href = 'index.xhtml'"/>
             </f:facet>
         </p:toolbar>
-
-        <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
+        <h:form prependId="false">
             <p:panel id="panel">
-                <h:panelGrid columns="3" cellpadding="5">
+                <fieldset class="form-group">
                     <p:outputLabel for="category" value="Category:" />
-                    <p:inputText id="category" value="#{mbCategory.name}" required="true" label="Category">
+                    <p:inputText id="category" value="#{mbCategory.name}" class="form-control" required="true" label="Category">
                         <f:validateLength minimum="2" />
                     </p:inputText>
                     <p:message for="category" display="icon" />
-                </h:panelGrid>
+                </fieldset>
                 <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="fa fa-save" />
             </p:panel>
         </h:form>
