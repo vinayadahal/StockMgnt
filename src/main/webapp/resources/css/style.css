@@ -69,8 +69,17 @@ body {
 }
 
 .ui-selectonemenu .ui-selectonemenu-trigger{
-    width: 0px;
-    padding: 0px;
+    width: 26px;
+    padding: 3px;
+}
+
+#categories_label{
+    /*border-radius: 0px;*/
+    width: 100%;
+}
+
+#categories_label div{
+    width: 200px;
 }
 
 
