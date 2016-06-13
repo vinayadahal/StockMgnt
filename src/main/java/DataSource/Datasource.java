@@ -19,7 +19,7 @@ public class Datasource {
 
     public Datasource() {
 
-        String connectionURL = "jdbc:mysql://localhost/stockmgnt";
+        String connectionURL = "jdbc:mysql://localhost:3306/stockmgnt";
 //            loadDriverClass();
 //            dbConnection = DriverManager.getConnection(connectionURL, "root", "root");
         ds = new BasicDataSource();
@@ -31,8 +31,8 @@ public class Datasource {
         // the settings below are optional -- dbcp can work with defaults
         ds.setInitialSize(1); // minimum connection at start of connection pool
         ds.setMinIdle(5); // min idle connection
-        ds.setMaxIdle(20); // max idle connection
-        ds.setMaxOpenPreparedStatements(180);
+        ds.setMaxIdle(10); // max idle connection
+        ds.setMaxOpenPreparedStatements(100);
         try {
             dbConnection = ds.getConnection();
         } catch (SQLException ex) {

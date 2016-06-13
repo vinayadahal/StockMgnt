@@ -6,19 +6,19 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Products</ui:define>
     <ui:define name="content">
+
+        <div class="pageHeader"><h3>Products</h3></div>
+        <p:toolbar id="tb" style="margin-bottom: 10px;">
+            <f:facet name="left">
+                <p:commandButton value="Add New" type="button" icon="fa fa-plus-circle" onclick="javascript:location.href = 'create.xhtml'"/>
+            </f:facet>
+            <f:facet name="right">
+                <p:commandButton title="Generate Report" type="button" icon="fa fa-download"/>
+            </f:facet>
+        </p:toolbar>
+        <f:event type="preRenderView" listener="#{mbProduct.showGrowl}" /> <!--Needed for showing growl in another page-->
+        <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
         <h:form>
-            <div class="pageHeader"><h3>Products</h3></div>
-            <p:toolbar id="tb" style="margin-bottom: 10px;">
-                <f:facet name="left">
-                    <p:commandButton value="Add New" type="button" icon="fa fa-plus-circle" onclick="javascript:location.href = 'create.xhtml'"/>
-                </f:facet>
-                <f:facet name="right">
-                    <p:commandButton title="Generate Report" type="button" icon="fa fa-download"/>
-                </f:facet>
-            </p:toolbar>
-            <f:event type="preRenderView" listener="#{mbCategory.showGrowl}" /> <!--Needed for showing growl in another page-->
-            <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
-            <!--#{mbCategory.all.size()}-->
             <p:dataTable var="product" value="#{mbProduct.all}"
                          rows="10"
                          rowIndexVar="rowIndex"
@@ -43,8 +43,8 @@
                     <h:outputText value="#{product.sellingPrice}" />
                 </p:column>
                 <p:column headerText="Edit Record" style="width: 100px;" colspan="2">
-                    <p:commandButton icon="fa fa-edit" type="button" onclick="javascript:location.href = 'edit.xhtml?categoryId=#{category.id}'" style="border-radius: 0px;margin-right: 3px;"/>
-                    <p:commandButton icon="fa fa-close" actionListener="#{mbCategory.delete(category.id)}" style="border-radius: 0px;">
+                    <p:commandButton icon="fa fa-edit" type="button" onclick="javascript:location.href = 'edit.xhtml?productId=#{product.id}'" style="border-radius: 0px;margin-right: 3px;"/>
+                    <p:commandButton icon="fa fa-close" actionListener="#{mbProduct.delete(product.id)}" style="border-radius: 0px;">
                         <p:confirm header="Warning: Confirm Delete Action" message="You are about to delete a record. Are you sure?" icon="fa fa-2x fa-fw fa-exclamation-circle" />
                     </p:commandButton>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -54,5 +54,6 @@
                 </p:column>
             </p:dataTable>
         </h:form>
+
     </ui:define>
 </ui:composition>

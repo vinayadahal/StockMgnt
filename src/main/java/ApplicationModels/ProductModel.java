@@ -8,6 +8,7 @@ import SystemModels.InsertModel;
 import SystemModels.SelectModel;
 import SystemModels.UpdateModel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,14 +22,13 @@ public class ProductModel {
     List<Product> list = new ArrayList();
 
     public List<Product> getAllProductBean() {
-        System.out.println(" Product Bean Called");
         objSelect.select("*");
         objSelect.from("product");
         List<Map> result = objSelect.runQuery();
-        CategoryModel objCategoryModel=new CategoryModel();
-        
+        CategoryModel objCategoryModel = new CategoryModel();
+
         System.out.println();
-        
+
         for (Map product : result) {
             Product objProduct = new Product();
             objProduct.setId(product.get("id").toString());
@@ -42,34 +42,48 @@ public class ProductModel {
         return list;
     }
 
-    public Category getSingleCategoryBean(String id) {
-        Category objCategory = new Category();
+    public Map<String, String> getAllCategoryList() {
         objSelect.select("*");
         objSelect.from("category");
+        List<Map> result = objSelect.runQuery();
+        Map<String, String> CategoryList = new HashMap<>();
+        for (Map category : result) {
+            CategoryList.put(category.get("name").toString(), category.get("id").toString());
+        }
+        return CategoryList;
+    }
+
+    public Product getSingleProduct(String id) {
+        objSelect.select("*");
+        objSelect.from("product");
         String[] cols = {"id"};
         String[] vals = {id};
         objSelect.where(cols, vals);
         List<Map> result = objSelect.runQuery();
-        for (Map category : result) {
-            objCategory.setId(category.get("id").toString());
-            objCategory.setName(category.get("name").toString());
+        Product objProduct = new Product();
+        for (Map product : result) {
+            objProduct.setId(product.get("id").toString());
+            objProduct.setCategoryId(product.get("category_id").toString());
+            objProduct.setName(product.get("name").toString());
+            objProduct.setDescription(product.get("description").toString());
+            objProduct.setPurchasePrice(product.get("purchasePrice").toString());
+            objProduct.setSellingPrice(product.get("sellingPrice").toString());
         }
-        return objCategory;
+        return objProduct;
     }
 
-    public int addCategory(String value) {
-        objInsert.insert("category");
-        String[] cols = {"name"};
-        String[] vals = {value};
+    public int addProduct(String name, String pp, String sp, String desc, String category_id) {
+        objInsert.insert("product");
+        String[] cols = {"name", "purchasePrice", "sellingPrice", "description", "category_id"};
+        String[] vals = {name, pp, sp, desc, category_id};
         objInsert.values(cols, vals);
         return objInsert.runUpdate();
     }
 
-    public int updateCategory(String id, String value) {
-        objUpdate.update("category");
-        String[] col = {"name"};
-        String[] val = {value};
-        System.out.println(value);
+    public int updateProduct(String name, String pp, String sp, String desc, String category_id, String id) {
+        objUpdate.update("product");
+        String[] col = {"name", "purchasePrice", "sellingPrice", "description", "category_id"};
+        String[] val = {name, pp, sp, desc, category_id};
         System.out.println(id);
         objUpdate.set(col, val);
         String[] whereCol = {"id"};
@@ -79,7 +93,7 @@ public class ProductModel {
     }
 
     public void delete(String id) {
-        objDelete.delete("category");
+        objDelete.delete("product");
         String[] cols = {"id"};
         String[] vals = {id};
         objDelete.where(cols, vals);

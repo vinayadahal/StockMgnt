@@ -20,7 +20,6 @@ public class CategoryModel {
     List<Category> list = new ArrayList();
 
     public List<Category> getAllCategoryBean() {
-        System.out.println("Bean Called");
         objSelect.select("*");
         objSelect.from("category");
         List<Map> result = objSelect.runQuery();

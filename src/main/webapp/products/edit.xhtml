@@ -4,9 +4,9 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">Edit Category</ui:define>
+    <ui:define name="title">Edit Product</ui:define>
     <ui:define name="content">
-        <div class="pageHeader"><h3>Edit Category</h3></div>
+        <div class="pageHeader"><h3>Edit Product</h3></div>
         <p:toolbar id="tb" style="margin-bottom: 10px;">
             <f:facet name="left">
                 <p:commandButton value="Back" type="button" icon="fa fa-arrow-circle-left" onclick="javascript:location.href = 'index.xhtml'"/>
@@ -14,16 +14,40 @@
         </p:toolbar>
         <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
             <p:panel id="panel">
-                <f:metadata><f:viewAction action="#{mbCategory.singleRecord()}" /></f:metadata>
-                <h:panelGrid columns="3" cellpadding="5">
-                    <p:outputLabel for="category" value="Category:" />
-                    <p:inputText type="hidden" id="categoryId" value="#{mbCategory.id}"  />
-                    <p:inputText id="category" value="#{mbCategory.name}" required="true" label="Category">
+                <f:metadata><f:viewAction action="#{mbProduct.singleRecord()}" /></f:metadata>
+                <p:inputText type="hidden" id="productId" value="#{mbProduct.id}"  />
+                <fieldset class="form-group">
+                    <p:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{mbProduct.name}" required="true" styleClass="form form-control">
                         <f:validateLength minimum="2" />
                     </p:inputText>
-                    <p:message for="category" display="icon" />
-                </h:panelGrid>
-                <p:commandButton value="Save" update="panel" action="#{mbCategory.update}" icon="fa fa-save" />
+                    <p:message for="name" display="icon" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="desc" value="Description:" />
+                    <p:inputTextarea id="desc" value="#{mbProduct.description}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputTextarea>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="categories" value="Categories:" />
+                    <p:selectOneMenu id="categories" value="#{mbProduct.categoryId}" style="width: 100%;" required="true">
+                        <f:selectItems value="#{mbProduct.allCategory}" />
+                    </p:selectOneMenu>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="purchasePrice" value="Purchase Price:" />
+                    <p:inputText id="purchasePrice" value="#{mbProduct.purchasePrice}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="sellingPrice" value="Selling Price:" />
+                    <p:inputText id="sellingPrice" value="#{mbProduct.sellingPrice}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <p:commandButton value="Save" update="panel" action="#{mbProduct.update}" icon="fa fa-save" />
             </p:panel>
         </h:form>
     </ui:define>

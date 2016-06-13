@@ -18,7 +18,7 @@
 
                 <fieldset class="form-group">
                     <p:outputLabel for="name" value="Name:" />
-                    <p:inputText id="name" value="#{mbCategory.name}" required="true" styleClass="form form-control">
+                    <p:inputText id="name" value="#{mbProduct.name}" required="true" styleClass="form form-control">
                         <f:validateLength minimum="2" />
                     </p:inputText>
                     <p:message for="name" display="icon" />
@@ -27,20 +27,37 @@
 
                 <fieldset class="form-group">
                     <p:outputLabel for="desc" value="Description:" />
-                    <p:inputTextarea id="desc" value="#{mbCategory.name}" required="true" styleClass="form form-control">
+                    <p:inputTextarea id="desc" value="#{mbProduct.description}" required="true" styleClass="form form-control">
                         <f:validateLength minimum="2" />
                     </p:inputTextarea>
                 </fieldset>
 
                 <fieldset class="form-group">
+                    
                     <p:outputLabel for="categories" value="Categories:" />
-                    <p:selectOneMenu id="categories" style="width: 100%;">
+                    <p:selectOneMenu id="categories" value="#{mbProduct.categoryId}" style="width: 100%;">
                         <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true"/>
-                        <f:selectItems value="1" />
+                        <f:selectItems value="#{mbProduct.allCategory}" />
                     </p:selectOneMenu>
                 </fieldset>
-
-                <p:commandButton value="Save" update="panel" action="#{mbCategory.add}" icon="fa fa-save" />
+                
+                 
+                
+                 <fieldset class="form-group">
+                    <p:outputLabel for="purchasePrice" value="Purchase Price:" />
+                    <p:inputText id="purchasePrice" value="#{mbProduct.purchasePrice}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    <p:outputLabel for="sellingPrice" value="Selling Price:" />
+                    <p:inputText id="sellingPrice" value="#{mbProduct.sellingPrice}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                
+                <p:commandButton value="Save" update="panel" action="#{mbProduct.add}" icon="fa fa-save" />
             </h:form>
         </p:panel>
     </ui:define>

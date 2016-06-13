@@ -75,43 +75,53 @@ public class Product {
         return objProduct.getAllProductBean();
     }
 
+    public Map<String, String> getAllCategory() {
+        ProductModel objProduct = new ProductModel();
+        return objProduct.getAllCategoryList();
+    }
+
     public void singleRecord() {
-        CategoryModel objCategoryBean = new CategoryModel();
+        ProductModel objProductModel = new ProductModel();
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-        String categoryId = params.get("categoryId");
-//        this.id = objCategoryBean.getSingleCategoryBean(categoryId).getId();
-//        this.categoryName = objCategoryBean.getSingleCategoryBean(categoryId).getName();
+        String productId = params.get("productId");
+        this.id = objProductModel.getSingleProduct(productId).getId();
+        this.name = objProductModel.getSingleProduct(productId).getName();
+        this.description = objProductModel.getSingleProduct(productId).getDescription();
+        this.category_id = objProductModel.getSingleProduct(productId).getCategoryId();
+        this.purchasePrice = objProductModel.getSingleProduct(productId).getPurchasePrice();
+        this.sellingPrice = objProductModel.getSingleProduct(productId).getSellingPrice();
     }
 
     public void add() {
-//        CategoryModel objCategoryBean = new CategoryModel();
-//        if (objCategoryBean.addCategory(this.categoryName) == 0) {
-//            System.out.println("Could not insert category for some reason....show error page!!!");
-//            return;
-//        }
-//        String successMsg = "Category Added: " + this.categoryName;
-//        redirectPage("index", successMsg);
+        ProductModel objProductModel = new ProductModel();
+        if (objProductModel.addProduct(this.name, this.purchasePrice, this.sellingPrice, this.description, this.category_id) == 0) {
+            System.out.println("Could not insert category for some reason....show error page!!!");
+            return;
+        }
+        String successMsg = "Product Added: " + this.name;
+        redirectPage("index", successMsg);
     }
 
     public void update() {
-//        CategoryModel objCategoryBean = new CategoryModel();
-//        if (this.categoryName == null || this.id == null) { // update record if both values are true
-//            System.out.println("Data are null....fatal error from category bean");
-//            return;
-//        }
-//        if (objCategoryBean.updateCategory(this.id, this.categoryName) != 1) {
-//            System.out.println("could not update the record.....Show Error page!!!");
-//            return;
-//        }
-//        String successMsg = "Category Updated: " + this.categoryName;
-//        redirectPage("index", successMsg);
+        ProductModel objProductModel = new ProductModel();
+        System.out.println(this.id);
+        if (this.name == null || this.purchasePrice == null || this.sellingPrice == null || this.description == null || this.category_id == null) {
+            System.out.println("Data are null....fatal error from Product bean");
+            return;
+        }
+        if (objProductModel.updateProduct(this.name, this.purchasePrice, this.sellingPrice, this.description, this.category_id, this.id) != 1) {
+            System.out.println("could not update the record.....Show Error page!!!");
+            return;
+        }
+        String successMsg = "Product Updated: " + this.name;
+        redirectPage("index", successMsg);
     }
 
     public void delete(String id) {
-        CategoryModel objCategoryBean = new CategoryModel();
-        objCategoryBean.delete(id);
-        String successMsg = "Category ID: " + id + " deleted";
+        ProductModel objProductModel = new ProductModel();
+        objProductModel.delete(id);
+        String successMsg = "Product ID: " + id + " deleted";
         redirectPage("index", successMsg);
     }
 
@@ -119,7 +129,7 @@ public class Product {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         try {
             ec.getFlash().put("successMsg", successMsg); //setting flash message
-            ec.redirect(ec.getRequestContextPath() + "/category/" + pageName + ".xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/products/" + pageName + ".xhtml");
         } catch (IOException ex) {
             System.out.println("Caught IO Exception >>> " + ex);
         }

@@ -10,12 +10,12 @@
         <h:outputStylesheet library="webjars" name="bootstrap/3.3.6/css/bootstrap.min-jsf.css" />
         <h:outputStylesheet library="webjars" name="font-awesome/4.6.2/css/font-awesome.min-jsf.css" />
         <h:outputScript library="webjars" name="bootstrap/3.3.6/js/bootstrap.js"/>
-        <!--<link type="text/css" rel="stylesheet" href="../resources/css/style.css" />-->
     </h:head>
     <h:body>
         <h:outputStylesheet library="css" name="style.css"  />
         <p:layout fullPage="true" style="">
-            <p:layoutUnit position="north" size="59" id="header-override">
+
+            <p:layoutUnit position="north" size="59" id="header-override" collapsible="false" >
                 <ui:insert name="menu">
                     <ui:include src="menuBar.xhtml" />
                 </ui:insert>
