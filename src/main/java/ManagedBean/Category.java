@@ -1,6 +1,7 @@
 package ManagedBean;
 
 import ApplicationModels.CategoryModel;
+import Services.Commons;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +35,7 @@ public class Category {
     }
 
     public List<Category> getAll() {
-        CategoryModel objCategoryBean = new CategoryModel();
-        return objCategoryBean.getAllCategoryBean();
+        return new CategoryModel().getAllCategoryBean();
     }
 
     public void singleRecord() {
@@ -48,49 +48,35 @@ public class Category {
     }
 
     public void add() {
-        CategoryModel objCategoryBean = new CategoryModel();
-        if (objCategoryBean.addCategory(this.categoryName) == 0) {
+        if (new CategoryModel().addCategory(this.categoryName) == 0) {
             System.out.println("Could not insert category for some reason....show error page!!!");
             return;
         }
         String successMsg = "Category Added: " + this.categoryName;
-        redirectPage("index", successMsg);
+        new Commons().redirectPage("index", successMsg);
     }
 
     public void update() {
-        CategoryModel objCategoryBean = new CategoryModel();
         if (this.categoryName == null || this.id == null) { // update record if both values are true
             System.out.println("Data are null....fatal error from category bean");
             return;
         }
-        if (objCategoryBean.updateCategory(this.id, this.categoryName) != 1) {
+        if (new CategoryModel().updateCategory(this.id, this.categoryName) != 1) {
             System.out.println("could not update the record.....Show Error page!!!");
             return;
         }
         String successMsg = "Category Updated: " + this.categoryName;
-        redirectPage("index", successMsg);
+        new Commons().redirectPage("index", successMsg);
     }
 
     public void delete(String id) {
-        CategoryModel objCategoryBean = new CategoryModel();
-        objCategoryBean.delete(id);
+        new CategoryModel().delete(id);
         String successMsg = "Category ID: " + id + " deleted";
-        redirectPage("index", successMsg);
-    }
-
-    public void redirectPage(String pageName, String successMsg) {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        try {
-            ec.getFlash().put("successMsg", successMsg); //setting flash message
-            ec.redirect(ec.getRequestContextPath() + "/category/" + pageName + ".xhtml");
-        } catch (IOException ex) {
-            System.out.println("Caught IO Exception >>> " + ex);
-        }
+        new Commons().redirectPage("index", successMsg);
     }
 
     public void showGrowl() { // contains growl message
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-
         String message = null;
         if (ec.getFlash().containsKey("successMsg")) {
             message = ec.getFlash().get("successMsg").toString();//getting flash message

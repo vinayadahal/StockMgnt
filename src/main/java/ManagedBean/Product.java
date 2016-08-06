@@ -1,8 +1,7 @@
 package ManagedBean;
 
-import ApplicationModels.CategoryModel;
 import ApplicationModels.ProductModel;
-import java.io.IOException;
+import Services.Commons;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
@@ -71,13 +70,11 @@ public class Product {
     }
 
     public List<Product> getAll() {
-        ProductModel objProduct = new ProductModel();
-        return objProduct.getAllProductBean();
+        return new ProductModel().getAllProductBean();
     }
 
     public Map<String, String> getAllCategory() {
-        ProductModel objProduct = new ProductModel();
-        return objProduct.getAllCategoryList();
+        return new ProductModel().getAllCategoryList();
     }
 
     public void singleRecord() {
@@ -94,50 +91,35 @@ public class Product {
     }
 
     public void add() {
-        ProductModel objProductModel = new ProductModel();
-        if (objProductModel.addProduct(this.name, this.purchasePrice, this.sellingPrice, this.description, this.category_id) == 0) {
+        if (new ProductModel().addProduct(this.name, this.purchasePrice, this.sellingPrice, this.description, this.category_id) == 0) {
             System.out.println("Could not insert category for some reason....show error page!!!");
             return;
         }
         String successMsg = "Product Added: " + this.name;
-        redirectPage("index", successMsg);
+        new Commons().redirectPage("index", successMsg);
     }
 
     public void update() {
-        ProductModel objProductModel = new ProductModel();
-        System.out.println(this.id);
         if (this.name == null || this.purchasePrice == null || this.sellingPrice == null || this.description == null || this.category_id == null) {
             System.out.println("Data are null....fatal error from Product bean");
             return;
         }
-        if (objProductModel.updateProduct(this.name, this.purchasePrice, this.sellingPrice, this.description, this.category_id, this.id) != 1) {
+        if (new ProductModel().updateProduct(this.name, this.purchasePrice, this.sellingPrice, this.description, this.category_id, this.id) != 1) {
             System.out.println("could not update the record.....Show Error page!!!");
             return;
         }
         String successMsg = "Product Updated: " + this.name;
-        redirectPage("index", successMsg);
+        new Commons().redirectPage("index", successMsg);
     }
 
     public void delete(String id) {
-        ProductModel objProductModel = new ProductModel();
-        objProductModel.delete(id);
+        new ProductModel().delete(id);
         String successMsg = "Product ID: " + id + " deleted";
-        redirectPage("index", successMsg);
-    }
-
-    public void redirectPage(String pageName, String successMsg) {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        try {
-            ec.getFlash().put("successMsg", successMsg); //setting flash message
-            ec.redirect(ec.getRequestContextPath() + "/products/" + pageName + ".xhtml");
-        } catch (IOException ex) {
-            System.out.println("Caught IO Exception >>> " + ex);
-        }
+        new Commons().redirectPage("index", successMsg);
     }
 
     public void showGrowl() { // contains growl message
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-
         String message = null;
         if (ec.getFlash().containsKey("successMsg")) {
             message = ec.getFlash().get("successMsg").toString();//getting flash message

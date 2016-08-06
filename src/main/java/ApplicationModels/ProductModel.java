@@ -1,7 +1,6 @@
 package ApplicationModels;
 
 import DataSource.Datasource;
-import ManagedBean.Category;
 import ManagedBean.Product;
 import SystemModels.DeleteModel;
 import SystemModels.InsertModel;
@@ -20,15 +19,13 @@ public class ProductModel {
     UpdateModel objUpdate = new UpdateModel();
     DeleteModel objDelete = new DeleteModel();
     List<Product> list = new ArrayList();
+    private final String tableName = "product";
 
     public List<Product> getAllProductBean() {
         objSelect.select("*");
-        objSelect.from("product");
+        objSelect.from(tableName);
         List<Map> result = objSelect.runQuery();
         CategoryModel objCategoryModel = new CategoryModel();
-
-        System.out.println();
-
         for (Map product : result) {
             Product objProduct = new Product();
             objProduct.setId(product.get("id").toString());
@@ -55,7 +52,7 @@ public class ProductModel {
 
     public Product getSingleProduct(String id) {
         objSelect.select("*");
-        objSelect.from("product");
+        objSelect.from(tableName);
         String[] cols = {"id"};
         String[] vals = {id};
         objSelect.where(cols, vals);
@@ -73,7 +70,7 @@ public class ProductModel {
     }
 
     public int addProduct(String name, String pp, String sp, String desc, String category_id) {
-        objInsert.insert("product");
+        objInsert.insert(tableName);
         String[] cols = {"name", "purchasePrice", "sellingPrice", "description", "category_id"};
         String[] vals = {name, pp, sp, desc, category_id};
         objInsert.values(cols, vals);
@@ -81,7 +78,7 @@ public class ProductModel {
     }
 
     public int updateProduct(String name, String pp, String sp, String desc, String category_id, String id) {
-        objUpdate.update("product");
+        objUpdate.update(tableName);
         String[] col = {"name", "purchasePrice", "sellingPrice", "description", "category_id"};
         String[] val = {name, pp, sp, desc, category_id};
         System.out.println(id);
@@ -93,7 +90,7 @@ public class ProductModel {
     }
 
     public void delete(String id) {
-        objDelete.delete("product");
+        objDelete.delete(tableName);
         String[] cols = {"id"};
         String[] vals = {id};
         objDelete.where(cols, vals);

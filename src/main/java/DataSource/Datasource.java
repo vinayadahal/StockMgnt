@@ -8,26 +8,15 @@ public class Datasource {
     public java.sql.Connection dbConnection;
     public BasicDataSource ds;
 
-    private void loadDriverClass() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("ERROR: MySQL JDBC driver not found. Stacktrace follows:\n");
-            System.out.println(ex);
-        }
-    }
-
     public Datasource() {
-
+//        System.out.println("<<<<<<<<<<<<<<Datasource called>>>>>>>>>>");
         String connectionURL = "jdbc:mysql://localhost:3306/stockmgnt";
-//            loadDriverClass();
-//            dbConnection = DriverManager.getConnection(connectionURL, "root", "root");
         ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         ds.setUsername("root");
-        ds.setPassword("root");
+        ds.setPassword("");
         ds.setUrl(connectionURL);
-        
+
         // the settings below are optional -- dbcp can work with defaults
         ds.setInitialSize(1); // minimum connection at start of connection pool
         ds.setMinIdle(5); // min idle connection

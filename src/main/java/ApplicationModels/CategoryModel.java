@@ -18,10 +18,11 @@ public class CategoryModel {
     UpdateModel objUpdate = new UpdateModel();
     DeleteModel objDelete = new DeleteModel();
     List<Category> list = new ArrayList();
+    private final String tableName = "category";
 
     public List<Category> getAllCategoryBean() {
         objSelect.select("*");
-        objSelect.from("category");
+        objSelect.from(tableName);
         List<Map> result = objSelect.runQuery();
         for (Map category : result) {
             Category objCategory = new Category();
@@ -35,7 +36,7 @@ public class CategoryModel {
     public Category getSingleCategoryBean(String id) {
         Category objCategory = new Category();
         objSelect.select("*");
-        objSelect.from("category");
+        objSelect.from(tableName);
         String[] cols = {"id"};
         String[] vals = {id};
         objSelect.where(cols, vals);
@@ -48,7 +49,7 @@ public class CategoryModel {
     }
 
     public int addCategory(String value) {
-        objInsert.insert("category");
+        objInsert.insert(tableName);
         String[] cols = {"name"};
         String[] vals = {value};
         objInsert.values(cols, vals);
@@ -56,7 +57,7 @@ public class CategoryModel {
     }
 
     public int updateCategory(String id, String value) {
-        objUpdate.update("category");
+        objUpdate.update(tableName);
         String[] col = {"name"};
         String[] val = {value};
         System.out.println(value);
@@ -69,7 +70,7 @@ public class CategoryModel {
     }
 
     public void delete(String id) {
-        objDelete.delete("category");
+        objDelete.delete(tableName);
         String[] cols = {"id"};
         String[] vals = {id};
         objDelete.where(cols, vals);
