@@ -53,7 +53,7 @@ public class Category {
             return;
         }
         String successMsg = "Category Added: " + this.categoryName;
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("category","index", successMsg);
     }
 
     public void update() {
@@ -66,13 +66,13 @@ public class Category {
             return;
         }
         String successMsg = "Category Updated: " + this.categoryName;
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("category","index", successMsg);
     }
 
     public void delete(String id) {
         new CategoryModel().delete(id);
         String successMsg = "Category ID: " + id + " deleted";
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("category","index", successMsg);
     }
 
     public void showGrowl() { // contains growl message

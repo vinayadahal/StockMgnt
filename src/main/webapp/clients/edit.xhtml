@@ -15,7 +15,7 @@
         <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
             <p:panel id="panel">
                 <f:metadata><f:viewAction action="#{mbClient.singleRecord()}" /></f:metadata>
-                <p:inputText type="hidden" id="productId" value="#{mbClient.id}"  />
+                <p:inputText type="hidden" id="clientId" value="#{mbClient.id}"  />
                 <fieldset class="form-group">
                     <p:outputLabel for="name" value="Name:" />
                     <p:inputText id="name" value="#{mbClient.name}" required="true" styleClass="form form-control">

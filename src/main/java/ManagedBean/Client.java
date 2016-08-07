@@ -94,7 +94,7 @@ public class Client {
             return;
         }
         String successMsg = "Client Added: " + this.name;
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("clients", "index", successMsg);
     }
 
     public void update() {
@@ -107,13 +107,13 @@ public class Client {
             return;
         }
         String successMsg = "Client Updated: " + this.name;
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("clients", "index", successMsg);
     }
 
     public void delete(String id) {
         new ClientModel().delete(id);
         String successMsg = "Client ID: " + id + " deleted";
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("clients", "index", successMsg);
     }
 
     public void showGrowl() { // contains growl message

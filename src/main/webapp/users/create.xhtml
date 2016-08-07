@@ -1,0 +1,47 @@
+<ui:composition template="../template/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pm="http://primefaces.org/mobile">
+    <ui:define name="title">Add User</ui:define>
+    <ui:define name="content">
+        <div class="pageHeader"><h3>Add User</h3></div>
+        <p:toolbar id="tb" style="margin-bottom: 10px;">
+            <f:facet name="left">
+                <p:commandButton value="Back" type="button" icon="fa fa-arrow-circle-left" onclick="javascript:location.href = 'index.xhtml'"/>
+            </f:facet>
+        </p:toolbar>
+        <p:panel id="panel">
+            <h:form prependId="false">
+                <fieldset class="form-group">
+                    <p:outputLabel for="fname" value="First Name:" />
+                    <p:inputText id="fname" value="#{mbUser.firstName}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                    <p:message for="fname" display="icon" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="lname" value="Last Name:" />
+                    <p:inputText id="lname" value="#{mbUser.lastName}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="phone" value="Phone:" />
+                    <p:inputText id="phone" value="#{mbUser.phone}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="email" value="Email:" />
+                    <p:inputText id="email" value="#{mbUser.email}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <p:commandButton value="Save" update="panel" action="#{mbUser.add}" icon="fa fa-save" />
+            </h:form>
+        </p:panel>
+    </ui:define>
+</ui:composition>

@@ -96,7 +96,7 @@ public class Product {
             return;
         }
         String successMsg = "Product Added: " + this.name;
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("products", "index", successMsg);
     }
 
     public void update() {
@@ -109,13 +109,13 @@ public class Product {
             return;
         }
         String successMsg = "Product Updated: " + this.name;
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("products", "index", successMsg);
     }
 
     public void delete(String id) {
         new ProductModel().delete(id);
         String successMsg = "Product ID: " + id + " deleted";
-        new Commons().redirectPage("index", successMsg);
+        new Commons().redirectPage("products", "index", successMsg);
     }
 
     public void showGrowl() { // contains growl message
