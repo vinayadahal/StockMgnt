@@ -2,6 +2,7 @@ package SystemModels;
 
 import DataSource.Datasource;
 import Services.Helper;
+import SystemConfig.BootStrap;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -57,9 +58,8 @@ public class SelectModel {
 
     public List<Map> runQuery() {
         Helper objHelper = new Helper();
-        Datasource objConnect = new Datasource();
         try {
-            PreparedStatement prepStmt = objConnect.dbConnection.prepareStatement(query);
+            PreparedStatement prepStmt = BootStrap.dbConnection.prepareStatement(query);
             for (int i = 0; i < value.size(); i++) {
                 prepStmt.setString(i + 1, value.get(i));
             }
@@ -68,33 +68,31 @@ public class SelectModel {
             ResultSetMetaData rsMeta = prepStmt.getMetaData(); // gets Metadata
             List<Map> Rows = objHelper.getMetaInfo(rsMeta, rs);
             prepStmt.close();
-            objConnect.closeConnection();
             return Rows;
         } catch (SQLException ex) {
             System.out.println("Exception caught on SelectModel runQuery >>> " + ex);
         }
-        objConnect.closeConnection();
         return null;
     }
 
-    public int countRows(String tableName) {
-        Datasource objConnect = new Datasource();
-        select("COUNT(*) AS total");
-        from(tableName);
-        try {
-            Statement stmt = objConnect.dbConnection.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                return (rs.getInt("total"));
-            }
-            stmt.close();
-            objConnect.closeConnection();
-        } catch (SQLException ex) {
-            System.out.println("SQL exception from SelectModel" + ex);
-        }
-        
-        objConnect.closeConnection();
-        return 0;
-    }
+//    public int countRows(String tableName) {
+//        Datasource objConnect = new Datasource();
+//        select("COUNT(*) AS total");
+//        from(tableName);
+//        try {
+//            Statement stmt = objConnect.dbConnection.createStatement();
+//            ResultSet rs = stmt.executeQuery(query);
+//            while (rs.next()) {
+//                return (rs.getInt("total"));
+//            }
+//            stmt.close();
+//            objConnect.closeConnection();
+//        } catch (SQLException ex) {
+//            System.out.println("SQL exception from SelectModel" + ex);
+//        }
+//
+//        objConnect.closeConnection();
+//        return 0;
+//    }
 
 }

@@ -1,6 +1,6 @@
 package SystemModels;
 
-import DataSource.Datasource;
+import SystemConfig.BootStrap;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,21 +51,18 @@ public class UpdateModel {
     }
 
     public int runQuery() {
-        Datasource objConnect = new Datasource();
         try {
-            PreparedStatement prepStmt = objConnect.dbConnection.prepareStatement(query);
+            PreparedStatement prepStmt = BootStrap.dbConnection.prepareStatement(query);
             for (int i = 0; i < value.size(); i++) {
                 prepStmt.setString(i + 1, value.get(i));
             }
             value.clear();
             int status = prepStmt.executeUpdate();
             prepStmt.close();
-            objConnect.closeConnection();
             return status;
         } catch (SQLException ex) {
             System.out.println("Exception caught on UpdateModel runQuery >>> " + ex);
         }
-        objConnect.closeConnection();
         return 0;
     }
 }

@@ -60,8 +60,6 @@ public class CategoryModel {
         objUpdate.update(tableName);
         String[] col = {"name"};
         String[] val = {value};
-        System.out.println(value);
-        System.out.println(id);
         objUpdate.set(col, val);
         String[] whereCol = {"id"};
         String[] whereVal = {id};

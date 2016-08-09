@@ -1,6 +1,7 @@
 package SystemModels;
 
 import DataSource.Datasource;
+import SystemConfig.BootStrap;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -48,9 +49,9 @@ public class InsertModel {
     }
 
     public int runUpdate() {
-        Datasource objConnect = new Datasource();
+//        Datasource objConnect = new Datasource();
         try {
-            PreparedStatement prepStmt = objConnect.dbConnection.prepareStatement(queryInsert, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement prepStmt = BootStrap.dbConnection.prepareStatement(queryInsert, Statement.RETURN_GENERATED_KEYS);
             for (int i = 0; i < values.size(); i++) {
                 prepStmt.setString(i + 1, values.get(i));
             }
@@ -62,12 +63,12 @@ public class InsertModel {
                 last_inserted_id = rs.getInt(1);
             }
             prepStmt.close();
-            objConnect.closeConnection();
+//            objConnect.closeConnection();
             return last_inserted_id;
         } catch (SQLException ex) {
             System.out.println("Caught Exception:- " + ex);
         }
-        objConnect.closeConnection();
+//        objConnect.closeConnection();
         return 0;
     }
 }
