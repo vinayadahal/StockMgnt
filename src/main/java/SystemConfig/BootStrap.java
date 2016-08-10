@@ -12,18 +12,19 @@ public class BootStrap implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("<<<<<<Creating Database Connection>>>>>>");
+        System.out.println("<<<<<< Creating Database Connection Pool >>>>>>");
         BasicDataSource ds = new Datasource().createConnection();
         try {
             dbConnection = ds.getConnection();
         } catch (SQLException ex) {
-            System.out.println("EXCEPTION::::: " + ex);
+            System.out.println("<<<<<<< JDBC Connection Exception Caught: >>>>>>>\n" + ex);
+            System.exit(1);
         }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("<<<<<<Closing Database Connection>>>>>>");
+        System.out.println("<<<<<< Closing Database Connection Pool>>>>>>");
         try {
             dbConnection.close();
         } catch (SQLException ex) {

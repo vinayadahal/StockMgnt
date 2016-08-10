@@ -28,10 +28,16 @@
                     </h:link>
                 </div>
                 <div class="panel panel-default icons">
-                    <a href="/expired-password">
+                    <h:link outcome="${pageContext.request.contextPath}/users/index.xhtml">
                         <i class="fa fa-users icon_font"></i>
                         <br/>Users
-                    </a>
+                    </h:link>
+                </div>
+                <div class="panel panel-default icons">
+                    <h:link outcome="${pageContext.request.contextPath}/userRole/index.xhtml">
+                        <i class="fa fa-lock icon_font"></i>
+                        <br/>User Role
+                    </h:link>
                 </div>
             </ui:define>
         </ui:composition>

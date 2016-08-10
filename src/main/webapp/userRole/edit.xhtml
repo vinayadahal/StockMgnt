@@ -1,0 +1,48 @@
+<ui:composition template="../template/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Edit User Role</ui:define>
+    <ui:define name="content">
+        <div class="pageHeader"><h3>Edit User Role</h3></div>
+        <p:toolbar id="tb" style="margin-bottom: 10px;">
+            <f:facet name="left">
+                <p:commandButton value="Back" type="button" icon="fa fa-arrow-circle-left" onclick="javascript:location.href = 'index.xhtml'"/>
+            </f:facet>
+        </p:toolbar>
+        <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
+            <p:panel id="panel">
+                <f:metadata><f:viewAction action="#{mbUserRole.singleRecord()}" /></f:metadata>
+                <p:inputText type="hidden" id="userRoleId" value="#{mbUserRole.id}"  />
+                <fieldset class="form-group">
+                    <p:outputLabel for="fname" value="Username:" />
+                    <p:inputText id="fname" value="#{mbUserRole.username}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                    <p:message for="fname" display="icon" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="lname" value="Password:" />
+                    <p:inputText id="lname" value="#{mbUserRole.password}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="phone" value="Role" />
+                    <p:inputText id="phone" value="#{mbUserRole.role}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="email" value="user_id" />
+                    <p:inputText id="email" value="#{mbUserRole.userId}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <p:commandButton value="Save" update="panel" action="#{mbUser.update}" icon="fa fa-save" />
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

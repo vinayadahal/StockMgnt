@@ -17,10 +17,11 @@ public class Datasource {
         ds.setPassword("");
         ds.setUrl(connectionURL);
         // the settings below are optional -- dbcp can work with defaults
-        ds.setInitialSize(1); // minimum connection at start of connection pool
-        ds.setMinIdle(5); // min idle connection
-        ds.setMaxIdle(10); // max idle connection
-        ds.setMaxOpenPreparedStatements(20);
+        ds.setInitialSize(10); // minimum connection at start of connection pool
+        ds.setMaxActive(15);
+        ds.setMinIdle(10); // min idle connection
+        ds.setMaxIdle(30); // max idle connection
+//        ds.setMaxOpenPreparedStatements(20);
         return ds;
     }
 
