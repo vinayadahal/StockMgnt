@@ -14,7 +14,7 @@ public class Datasource {
         ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         ds.setUsername("root");
-        ds.setPassword("");
+        ds.setPassword("root");
         ds.setUrl(connectionURL);
         // the settings below are optional -- dbcp can work with defaults
         ds.setInitialSize(10); // minimum connection at start of connection pool
