@@ -18,7 +18,7 @@
         <f:event type="preRenderView" listener="#{mbRoles.showGrowl}" /> <!--Needed for showing growl in another page-->
         <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
         <h:form>
-            <p:dataTable var="user" value="#{mbRoles.all}"
+            <p:dataTable var="roles" value="#{mbRoles.all}"
                          rows="10"
                          rowIndexVar="rowIndex"
                          paginator="true"
@@ -31,7 +31,7 @@
                 </p:column>
                 <p:column headerText="Edit Record" style="width: 100px;" colspan="2">
                     <p:commandButton icon="fa fa-edit" type="button" onclick="javascript:location.href = 'edit.xhtml?roleId=#{roles.id}'" style="border-radius: 0px;margin-right: 3px;"/>
-                    <p:commandButton icon="fa fa-close" actionListener="#{mbRoles.delete(role.id)}" style="border-radius: 0px;">
+                    <p:commandButton icon="fa fa-close" actionListener="#{roles.delete(roles.id)}" style="border-radius: 0px;">
                         <p:confirm header="Warning: Confirm Delete Action" message="You are about to delete a record. Are you sure?" icon="fa fa-2x fa-fw fa-exclamation-circle" />
                     </p:commandButton>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

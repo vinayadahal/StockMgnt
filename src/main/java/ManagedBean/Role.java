@@ -1,7 +1,6 @@
 package ManagedBean;
 
 import ApplicationModels.RoleModel;
-import ApplicationModels.UserModel;
 import Services.Commons;
 import java.util.List;
 import java.util.Map;
@@ -39,12 +38,12 @@ public class Role {
     }
 
     public void singleRecord() {
-        UserModel objUserModel = new UserModel();
+        RoleModel objRoleModel = new RoleModel();
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
         String roleId = params.get("roleId");
-        this.id = objUserModel.getSingleUser(roleId).getId();
-        this.role = objUserModel.getSingleUser(roleId).getFirstName();
+        this.id = objRoleModel.getSingleUser(roleId).getId();
+        this.role = objRoleModel.getSingleUser(roleId).getRole();
     }
 
     public void add() {
@@ -70,7 +69,7 @@ public class Role {
     }
 
     public void delete(String id) {
-        new UserModel().delete(id);
+        new RoleModel().delete(id);
         String successMsg = "Role ID: " + id + " deleted";
         new Commons().redirectPage("role", "index", successMsg);
     }
