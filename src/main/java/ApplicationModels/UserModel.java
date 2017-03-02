@@ -69,18 +69,18 @@ public class UserModel {
         return objUser;
     }
 
-    public int addUser(String fname, String lname, String phone, String email) {
+    public int addUser(String fname, String lname, String phone, String email, String username, String password) {
         objInsert.insert(tableName);
-        String[] cols = {"first_name", "last_name", "phone", "email"};
-        String[] vals = {fname, lname, phone, email};
+        String[] cols = {"first_name", "last_name", "phone", "email", "username", "password"};
+        String[] vals = {fname, lname, phone, email, username, password};
         objInsert.values(cols, vals);
         return objInsert.runUpdate();
     }
 
-    public int updateUser(String fname, String lname, String phone, String email, String id) {
+    public int updateUser(String fname, String lname, String phone, String email, String username, String password, String id) {
         objUpdate.update(tableName);
-        String[] col = {"first_name", "last_name", "phone", "email"};
-        String[] val = {fname, lname, phone, email};
+        String[] col = {"first_name", "last_name", "phone", "email", "username", "password"};
+        String[] val = {fname, lname, phone, email, username, password};
         objUpdate.set(col, val);
         String[] whereCol = {"id"};
         String[] whereVal = {id};

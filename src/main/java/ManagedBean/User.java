@@ -99,11 +99,10 @@ public class User {
         this.email = objUserModel.getSingleUser(userId).getEmail();
         this.username = objUserModel.getSingleUser(userId).getUsername();
         this.password = objUserModel.getSingleUser(userId).getPassword();
-        System.out.println("password: " + this.password);
     }
 
     public void add() {
-        if (new UserModel().addUser(this.firstName, this.lastName, this.phone, this.email) == 0) {
+        if (new UserModel().addUser(this.firstName, this.lastName, this.phone, this.email, this.username, this.password) == 0) {
             System.out.println("Could not insert category for some reason....show error page!!!");
             return;
         }
@@ -112,11 +111,11 @@ public class User {
     }
 
     public void update() {
-        if (this.firstName == null || this.lastName == null || this.phone == null || this.email == null) {
+        if (this.firstName == null || this.lastName == null || this.phone == null || this.email == null || this.username == null || this.password == null) {
             System.out.println("Data are null....fatal error from Product bean");
             return;
         }
-        if (new UserModel().updateUser(this.firstName, this.lastName, this.phone, this.email, this.id) != 1) {
+        if (new UserModel().updateUser(this.firstName, this.lastName, this.phone, this.email, this.username, this.password, this.id) != 1) {
             System.out.println("could not update the record.....Show Error page!!!");
             return;
         }

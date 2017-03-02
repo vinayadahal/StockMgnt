@@ -11,7 +11,13 @@
             <f:facet name="left">
                 <p:commandButton value="Back" type="button" icon="fa fa-arrow-circle-left" onclick="javascript:location.href = 'index.xhtml'"/>
             </f:facet>
+            <f:facet name="right">
+                <p:commandButton value="Update Credentials" type="button" icon="fa fa-key" onclick="PF('dlg').show();"/>
+
+            </f:facet>
+
         </p:toolbar>
+
         <h:form prependId="false"> <!--prepending to avoid the auto generated id in form elements-->
             <p:panel id="panel">
                 <f:metadata><f:viewAction action="#{mbUser.singleRecord()}" /></f:metadata>
@@ -41,20 +47,37 @@
                         <f:validateLength minimum="2" />
                     </p:inputText>
                 </fieldset>
-                <fieldset class="form-group">
-                    <p:outputLabel for="username" value="Username:" />
-                    <p:inputText id="username" value="#{mbUser.username}" required="true" styleClass="form form-control">
-                        <f:validateLength minimum="2" />
-                    </p:inputText>
-                </fieldset>
-                <fieldset class="form-group">
-                    <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{mbUser.password}" required="true" styleClass="form form-control">
-                        <f:validateLength minimum="2" />
-                    </p:password>
-                </fieldset>
                 <p:commandButton value="Save" update="panel" action="#{mbUser.update}" icon="fa fa-save" />
             </p:panel>
+            <p:dialog header="Update Credentials" widgetVar="dlg" showEffect="explode"
+                      hideEffect="explode" resizable="false" closable="false"
+                      draggable="false"> <!-- credentials pop up -->
+                <p:panel id="panel1">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+                    <fieldset class="form-group">
+                        <p:outputLabel for="username" value="Username:" />
+                        <p:inputText id="username" value="#{mbUser.username}" required="true" styleClass="form form-control">
+                            <f:validateLength minimum="2" />
+                        </p:inputText>
+                    </fieldset>
+                    <h:panelGrid id="matchGrid">
+                        <fieldset class="form-group">
+                            <p:outputLabel for="password" value="Password:" />
+                            <p:password id="password" value="#{mbUser.password}" match="con-password" redisplay="true" required="true" styleClass="form form-control">
+                                <f:validateLength minimum="2" />
+                            </p:password>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <p:outputLabel for="con-password" value="Confirm Password:" />
+                            <p:password id="con-password" value="#{mbUser.password}" redisplay="true" required="true" styleClass="form form-control">
+                                <f:validateLength minimum="2" />
+                            </p:password>
+                        </fieldset>
+                    </h:panelGrid>
+                    <br/>
+                    <p:commandButton value="Save" icon="fa fa-save" update="matchGrid" onclick="PF('dlg').show();"/>
+                </p:panel>
+            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>
