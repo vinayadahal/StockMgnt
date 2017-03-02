@@ -70,9 +70,11 @@ CREATE TABLE `role` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `role` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `role` */
+
+insert  into `role`(`id`,`role`) values (1,'Admins');
 
 /*Table structure for table `transaction` */
 
@@ -111,19 +113,19 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `address` varchar(255) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `phone` bigint(20) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`address`,`dob`,`email`,`first_name`,`gender`,`last_name`,`phone`) values (4,'Kathmandu','2014-01-01','admin@IMS.com','admin','male','admin',49561381),(5,'Kathmandu','2014-01-02','user@ims.com','user','female','user',49156845);
+insert  into `user`(`id`,`email`,`first_name`,`gender`,`last_name`,`phone`,`username`,`password`) values (4,'admin@ims.com','admin','male','admin',49561381,'admin','admin'),(5,'user@ims.com','user','female','user',49156845,'user','user');
 
 /*Table structure for table `user_role` */
 

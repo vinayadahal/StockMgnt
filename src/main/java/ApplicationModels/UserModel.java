@@ -63,6 +63,8 @@ public class UserModel {
             objUser.setLastName(user.get("last_name").toString());
             objUser.setPhone(user.get("phone").toString());
             objUser.setEmail(user.get("email").toString());
+            objUser.setUsername(user.get("username").toString());
+            objUser.setPassword(user.get("password").toString());
         }
         return objUser;
     }

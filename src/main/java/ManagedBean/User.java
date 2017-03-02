@@ -20,6 +20,8 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
+    private String username;
+    private String password;
 
     public void setId(String user_id) {
         this.id = user_id;
@@ -39,6 +41,14 @@ public class User {
 
     public void setPhone(String phone_no) {
         this.phone = phone_no;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getId() {
@@ -61,6 +71,14 @@ public class User {
         return phone;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public List<User> getAll() {
         return new UserModel().getAllUserBean();
     }
@@ -79,6 +97,9 @@ public class User {
         this.lastName = objUserModel.getSingleUser(userId).getLastName();
         this.phone = objUserModel.getSingleUser(userId).getPhone();
         this.email = objUserModel.getSingleUser(userId).getEmail();
+        this.username = objUserModel.getSingleUser(userId).getUsername();
+        this.password = objUserModel.getSingleUser(userId).getPassword();
+        System.out.println("password: " + this.password);
     }
 
     public void add() {

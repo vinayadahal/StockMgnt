@@ -41,6 +41,18 @@
                         <f:validateLength minimum="2" />
                     </p:inputText>
                 </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="username" value="Username:" />
+                    <p:inputText id="username" value="#{mbUser.username}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="password" value="Password:" />
+                    <p:password id="password" value="#{mbUser.password}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:password>
+                </fieldset>
                 <p:commandButton value="Save" update="panel" action="#{mbUser.update}" icon="fa fa-save" />
             </p:panel>
         </h:form>

@@ -1,14 +1,12 @@
 package ApplicationModels;
 
 import DataSource.Datasource;
-import ManagedBean.User;
 import ManagedBean.UserRole;
 import SystemModels.DeleteModel;
 import SystemModels.InsertModel;
 import SystemModels.SelectModel;
 import SystemModels.UpdateModel;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +29,7 @@ public class UserRoleModel {
             objUserRole.setId(userRole.get("id").toString());
             objUserRole.setUsername(userRole.get("username").toString());
             objUserRole.setPassword(userRole.get("password").toString());
-            objUserRole.setRole(userRole.get("role").toString());
+            objUserRole.setRoleId(userRole.get("role").toString());
             objUserRole.setUserId(userRole.get("user_id").toString());
             list.add(objUserRole);
         }
@@ -50,7 +48,7 @@ public class UserRoleModel {
             objUserRole.setId(userRole.get("id").toString());
             objUserRole.setUsername(userRole.get("username").toString());
             objUserRole.setPassword(userRole.get("password").toString());
-            objUserRole.setRole(userRole.get("role").toString());
+            objUserRole.setRoleId(userRole.get("role").toString());
             objUserRole.setUserId(userRole.get("user_id").toString());
         }
         return objUserRole;
