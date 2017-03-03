@@ -51,33 +51,40 @@
             </p:panel>
             <p:dialog header="Update Credentials" widgetVar="dlg" showEffect="explode"
                       hideEffect="explode" resizable="false" closable="false"
-                      draggable="false"> <!-- credentials pop up -->
-                <p:panel id="panel1">
-                    <p:messages id="messages" showDetail="true" autoUpdate="true" />
-                    <fieldset class="form-group">
-                        <p:outputLabel for="username" value="Username:" />
-                        <p:inputText id="username" value="#{mbUser.username}" required="true" styleClass="form form-control">
-                            <f:validateLength minimum="2" />
-                        </p:inputText>
-                    </fieldset>
-                    <h:panelGrid id="matchGrid">
-                        <fieldset class="form-group">
-                            <p:outputLabel for="password" value="Password:" />
-                            <p:password id="password" value="#{mbUser.password}" match="con-password" redisplay="true" required="true" styleClass="form form-control">
-                                <f:validateLength minimum="2" />
-                            </p:password>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <p:outputLabel for="con-password" value="Confirm Password:" />
-                            <p:password id="con-password" value="#{mbUser.password}" redisplay="true" required="true" styleClass="form form-control">
-                                <f:validateLength minimum="2" />
-                            </p:password>
-                        </fieldset>
-                    </h:panelGrid>
-                    <br/>
-                    <p:commandButton value="Save" icon="fa fa-save" update="matchGrid" onclick="PF('dlg').show();"/>
-                </p:panel>
+                      draggable="false" width="300"> <!-- credentials pop up -->
+                <div class="custom_err_msg" id="error_msg"></div>
+                <fieldset class="form-group">
+                    <p:outputLabel for="username" value="Username:" />
+                    <p:inputText id="username" value="#{mbUser.username}" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="password" value="Password:" />
+                    <p:password id="password" value="#{mbUser.password}" redisplay="true" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:password>
+                </fieldset>
+                <fieldset class="form-group">
+                    <p:outputLabel for="con-password" value="Confirm Password:" />
+                    <p:password id="con-password" value="#{mbUser.password}" redisplay="true" required="true" styleClass="form form-control">
+                        <f:validateLength minimum="2" />
+                    </p:password>
+                </fieldset>
+                <p:commandButton value="Save" icon="fa fa-save" onclick="validate()"/>
             </p:dialog>
         </h:form>
+        <script type="text/javascript">
+            $("#error_msg").hide();
+            function validate() {
+                if ($('#password').val() === $('#con-password').val()) {
+                    $("#error_msg").hide();
+                    PF('dlg').hide();
+                } else {
+                    $("#error_msg").html("Password validation error!!!");
+                    $('#error_msg').show();
+                }
+            }
+        </script>
     </ui:define>
 </ui:composition>

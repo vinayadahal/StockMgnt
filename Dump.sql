@@ -125,7 +125,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`email`,`first_name`,`gender`,`last_name`,`phone`,`username`,`password`) values (4,'admin@ims.com','admin','male','admin',49561381,'admin','admin'),(5,'user@ims.com','user','female','user',49156845,'user','user');
+insert  into `user`(`id`,`email`,`first_name`,`gender`,`last_name`,`phone`,`username`,`password`) values (4,'admin@ims.com','admin','male','admin',49561381,'admin','12345'),(5,'user@ims.com','user','female','user',49156845,'user','user12345');
 
 /*Table structure for table `user_role` */
 

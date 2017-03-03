@@ -92,6 +92,15 @@ body {
     width: 200px;
 }
 
+.custom_err_msg{
+    padding: 10px 5px;
+    background-color: rgba(200,0,0,0.3);
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid #d00;
+    border-radius: 2px;
+}
+
 
 
 
