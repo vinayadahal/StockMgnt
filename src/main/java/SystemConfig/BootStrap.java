@@ -31,4 +31,16 @@ public class BootStrap implements ServletContextListener {
             System.out.println("Exception::: " + ex);
         }
     }
+
+    public static Boolean reconnectDatabase() {
+        System.out.println("<<<<<< Recreating Database Connection Pool >>>>>>");
+        BasicDataSource ds = new Datasource().createConnection();
+        try {
+            dbConnection = ds.getConnection();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("<<<<<<< JDBC Connection Exception Caught: >>>>>>>\n" + ex);
+            return false;
+        }
+    }
 }

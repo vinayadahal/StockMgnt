@@ -22,6 +22,8 @@ public class Datasource {
         ds.setMinIdle(10); // min idle connection
         ds.setMaxIdle(30); // max idle connection
 //        ds.setMaxOpenPreparedStatements(20);
+        ds.setValidationQuery("SELECT 1");
+        ds.setDefaultAutoCommit(true);
         return ds;
     }
 

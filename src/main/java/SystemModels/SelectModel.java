@@ -1,13 +1,11 @@
 package SystemModels;
 
-import DataSource.Datasource;
 import Services.Helper;
 import SystemConfig.BootStrap;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +57,10 @@ public class SelectModel {
     public List<Map> runQuery() {
         Helper objHelper = new Helper();
         try {
+            if (!BootStrap.dbConnection.toString().contains("UserName")) {
+                System.out.println("<<<<<<<<<< Connection lost to the server >>>>>>>>>>");
+                BootStrap.reconnectDatabase();
+            }
             PreparedStatement prepStmt = BootStrap.dbConnection.prepareStatement(query);
             for (int i = 0; i < value.size(); i++) {
                 prepStmt.setString(i + 1, value.get(i));
@@ -71,7 +73,9 @@ public class SelectModel {
             return Rows;
         } catch (SQLException ex) {
             System.out.println("Exception caught on SelectModel runQuery >>> " + ex);
+
         }
+
         return null;
     }
 
@@ -94,5 +98,4 @@ public class SelectModel {
 //        objConnect.closeConnection();
 //        return 0;
 //    }
-
 }
